@@ -1,17 +1,26 @@
 
 import pandas as pd 
 import numpy as np
-import scipy.stats as zscore
+import scipy.stats as stats
 import os
 
 
-files=["BEN_full.csv", "CO_full.csv", "MXIL_full.csv", "NO_full.csv", "NO2_full.csv", "O3_full.csv", "PM2.5_full.csv", "SO2_full.csv", "TOL_full.csv"]
+data = pd.read_csv("data/data_pro.csv", delimiter=';', parse_dates=["date"], index_col=["date"])
+
+zscore = data.apply(stats.zscore) 
+
+print(zscore)
+
+tolueno = data.iloc[:, 8].to_list()
+
+print(tolueno)
+
+print(type(tolueno))
 
 # dataframes = []
 
 # for file in files:
 
-#     nome = os.path.splitext(file)[0].replace("_full", "")
 
 #     df = pd.read_csv(file)
 #     dataframes.append(df)
@@ -29,4 +38,5 @@ files=["BEN_full.csv", "CO_full.csv", "MXIL_full.csv", "NO_full.csv", "NO2_full.
 #     print(f"Anomalías en {nome}")
 #     print(anomalias)
 #     print()
+
 
