@@ -405,33 +405,33 @@ plt.show()
 
 
 ##### Gardar nun CSV #####
-# umbral = 2
-# anomalias_columna = {}
+umbral = 2
+anomalias_columna = {}
 
-# for columna in zscore.columns:
-#     zscore_columna = zscore[columna]
-#     outliers_columna = zscore_columna[abs(zscore_columna) > umbral]
+for columna in zscore.columns:
+    zscore_columna = zscore[columna]
+    outliers_columna = zscore_columna[abs(zscore_columna) > umbral]
 
-#     print(f"Anomalías en {columna}")
-#     print(outliers_columna)
+    print(f"Anomalías en {columna}")
+    print(outliers_columna)
 
-#     anomalias_columna[columna] = outliers_columna
+    anomalias_columna[columna] = outliers_columna
 
-# # df_anomalias = pd.DataFrame(anomalias_columna)
+# df_anomalias = pd.DataFrame(anomalias_columna)
 
 # # df_anomalias.to_csv("taboa_valores_anomalos_zscore.csv", sep=";")
 
 # #### Calculamos o % de valores anómalos de cada variable para comprobar que gardamos no CSV os datos que eran ####
 
-# data_copia = data.copy()
+data_copia = data.copy()
 
-# porcentaxes_anomalias_variable = {}
+porcentaxes_anomalias_variable = {}
 
-# for columna in data_copia.columns:
+for columna in data_copia.columns:
 
-#     anomalias_variable = np.abs(stats.zscore(data_copia[columna])) > umbral
-#     porcentaxes_anomalias = (anomalias_variable.sum() / len(data_copia[columna])) * 100
-#     porcentaxes_anomalias_variable[columna] = porcentaxes_anomalias
+    anomalias_variable = np.abs(stats.zscore(data_copia[columna])) > umbral
+    porcentaxes_anomalias = (anomalias_variable.sum() / len(data_copia[columna])) * 100
+    porcentaxes_anomalias_variable[columna] = porcentaxes_anomalias
 
-# print("% Anomalías para cadda variable")
-# print(porcentaxes_anomalias_variable)
+print("% Anomalías para cadda variable")
+print(porcentaxes_anomalias_variable)
