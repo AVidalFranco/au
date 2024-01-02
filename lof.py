@@ -14,27 +14,27 @@ data = pd.read_csv("data/data_pro.csv", delimiter=';', parse_dates=["date"], ind
 
 # Creamos un modelo LOF para cada variable
 lof_variables = {}
-anomalias_variables = {}
+anomalias_variables_lof = {}
 
 for column in data.columns:
     variables = data[column].values.reshape(-1, 1)
     lof_variables[column] = LocalOutlierFactor(n_neighbors=20, contamination=0.1)
     lof_variables[column].fit_predict(variables) 
-    anomalias_variables[column] = lof_variables[column].negative_outlier_factor_
+    anomalias_variables_lof[column] = lof_variables[column].negative_outlier_factor_
 
-print(anomalias_variables)
+print(anomalias_variables_lof)
 
 
 # Calculamos as anomalías individualmente 
-anomalias_ben = anomalias_variables["BEN"]
-anomalias_co = anomalias_variables["CO"]
-anomalias_mxil = anomalias_variables["MXIL"]
-anomalias_no2 = anomalias_variables["NO2"]
-anomalias_no = anomalias_variables["NO"]
-anomalias_o3 = anomalias_variables["O3"]
-anomalias_pm25 = anomalias_variables["PM2_5"]
-anomalias_so2 = anomalias_variables["SO2"]
-anomalias_tol = anomalias_variables["TOL"]
+anomalias_ben = anomalias_variables_lof["BEN"]
+anomalias_co = anomalias_variables_lof["CO"]
+anomalias_mxil = anomalias_variables_lof["MXIL"]
+anomalias_no2 = anomalias_variables_lof["NO2"]
+anomalias_no = anomalias_variables_lof["NO"]
+anomalias_o3 = anomalias_variables_lof["O3"]
+anomalias_pm25 = anomalias_variables_lof["PM2_5"]
+anomalias_so2 = anomalias_variables_lof["SO2"]
+anomalias_tol = anomalias_variables_lof["TOL"]
 
 
 
