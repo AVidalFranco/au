@@ -3,7 +3,7 @@
 
 ## Métodoloxías implementadas
 1. Z-Score
-2. STL Decomposition
+2. ~~STL Decomposition~~
 3. One-Class SVM
 
 ## Facer o seguinte:
