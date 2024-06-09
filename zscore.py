@@ -433,5 +433,5 @@ for columna in data_copia.columns:
     porcentaxes_anomalias = (anomalias_variable.sum() / len(data_copia[columna])) * 100
     porcentaxes_anomalias_variable[columna] = porcentaxes_anomalias
 
-print("% Anomalías para cadda variable")
+print("% Anomalías para cada variable")
 print(porcentaxes_anomalias_variable)
