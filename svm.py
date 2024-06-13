@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as stats
 
+plt.style.use('ggplot')
+
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.svm import OneClassSVM
 
@@ -35,12 +37,9 @@ data.to_csv("anomalies_SVM.csv")
 anomalies = pd.DataFrame(data_normalized, columns=data.columns[:-1], index=data.index)
 anomalies['anomaly'] = pred
 
-# #### Xeral para as gráficas ####
-plt.figure(figsize=(10, 6))
-
 # Función para graficar cada variable con anomalías
 def plot_anomalies(df, variable):
-    plt.figure(figsize=(14, 7))
+    plt.figure(figsize=(10, 6))
     plt.plot(df.index, df[variable], label=variable, color='blue')
     
     # Resaltar as anomalías
