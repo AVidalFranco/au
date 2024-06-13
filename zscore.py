@@ -42,4 +42,3 @@ for column in data.columns:
 
     # Save the plot to a PNG file
     plt.savefig(f"results/{column}_zscore.png", dpi=300)
-
