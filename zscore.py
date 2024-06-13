@@ -34,7 +34,7 @@ for column in data.columns:
     # Add labels and title
     plt.xlabel('Data')
     plt.ylabel(column)
-    plt.title(f'Z-Score {column}')
+    plt.title(f'Anomalías Z-Score {column}')
     plt.legend()
     
     # Show the plot
