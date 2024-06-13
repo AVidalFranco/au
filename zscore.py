@@ -1,19 +1,19 @@
 
-import pandas as pd 
-import numpy as np
-import scipy.stats as stats
 import os
+import numpy as np
+import pandas as pd 
+import scipy.stats as stats
 from matplotlib import pyplot as plt
+plt.style.use("ggplot")
 from PIL import Image, ImageDraw
 
+# Calcular z-score de cada día e variable
 data = pd.read_csv("data/data_pro.csv", delimiter=';', parse_dates=["date"], index_col=["date"])
 
 zscore = data.apply(stats.zscore) 
 
 print(zscore)
 
-
-plt.style.use("ggplot")
 
 
 #### TOLUENO ####
@@ -386,36 +386,36 @@ plt.style.use("ggplot")
 
 
 # #### Xeral para as gráficas ####
-plt.figure(figsize=(10, 6))
-cores = plt.cm.rainbow(np.linspace(0, 1, len(zscore.columns)))
+# plt.figure(figsize=(10, 6))
+# cores = plt.cm.rainbow(np.linspace(0, 1, len(zscore.columns)))
 
-for i, columna in enumerate(zscore.columns):
-    plt.plot(zscore.index, zscore[columna], alpha=0.5, label=columna, color=cores[i])
+# for i, columna in enumerate(zscore.columns):
+#     plt.plot(zscore.index, zscore[columna], alpha=0.5, label=columna, color=cores[i])
 
-plt.xlabel("Data")
-plt.ylabel("Z-Scores")
-plt.title("Evolución dos Z-Scores das variables no tempo")
+# plt.xlabel("Data")
+# plt.ylabel("Z-Scores")
+# plt.title("Evolución dos Z-Scores das variables no tempo")
 
-plt.legend()
+# plt.legend()
 
-plt.show()
+# plt.show()
 
 
 
 
 
 ##### Gardar nun CSV #####
-umbral = 2
-anomalias_columna = {}
+# umbral = 2
+# anomalias_columna = {}
 
-for columna in zscore.columns:
-    zscore_columna = zscore[columna]
-    outliers_columna = zscore_columna[abs(zscore_columna) > umbral]
+# for columna in zscore.columns:
+#     zscore_columna = zscore[columna]
+#     outliers_columna = zscore_columna[abs(zscore_columna) > umbral]
 
-    print(f"Anomalías en {columna}")
-    print(outliers_columna)
+#     print(f"Anomalías en {columna}")
+#     print(outliers_columna)
 
-    anomalias_columna[columna] = outliers_columna
+#     anomalias_columna[columna] = outliers_columna
 
 # df_anomalias = pd.DataFrame(anomalias_columna)
 
@@ -423,15 +423,15 @@ for columna in zscore.columns:
 
 # #### Calculamos o % de valores anómalos de cada variable para comprobar que gardamos no CSV os datos que eran ####
 
-data_copia = data.copy()
+# data_copia = data.copy()
 
-porcentaxes_anomalias_variable = {}
+# porcentaxes_anomalias_variable = {}
 
-for columna in data_copia.columns:
+# for columna in data_copia.columns:
 
-    anomalias_variable = np.abs(stats.zscore(data_copia[columna])) > umbral
-    porcentaxes_anomalias = (anomalias_variable.sum() / len(data_copia[columna])) * 100
-    porcentaxes_anomalias_variable[columna] = porcentaxes_anomalias
+#     anomalias_variable = np.abs(stats.zscore(data_copia[columna])) > umbral
+#     porcentaxes_anomalias = (anomalias_variable.sum() / len(data_copia[columna])) * 100
+#     porcentaxes_anomalias_variable[columna] = porcentaxes_anomalias
 
-print("% Anomalías para cada variable")
-print(porcentaxes_anomalias_variable)
+# print("% Anomalías para cada variable")
+# print(porcentaxes_anomalias_variable)
