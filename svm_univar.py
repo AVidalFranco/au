@@ -26,6 +26,10 @@ for column in data.columns:
     
     # Predict the anomalies in the data
     pred = model.predict(data_normalized)
+
+    # Replace the -1 values with 1 and the 1 values with 0
+    pred[pred == 1] = 0
+    pred[pred == -1] = 1
     
     # Create a new DataFrame with the date, the original data, and the SVM classification
     new_data = pd.DataFrame({
@@ -42,7 +46,7 @@ for column in data.columns:
     plt.plot(new_data['date'], new_data[column], label=column, color='royalblue')
     
     # Mark the anomalous days with a red dot
-    anomalies = new_data[new_data['svm_' + column] == -1]
+    anomalies = new_data[new_data['svm_' + column] == 1]
     plt.plot(anomalies['date'], anomalies[column], 'o', label='Anomalía', color='tomato')
 
     # Add labels and title
