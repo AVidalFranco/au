@@ -9,7 +9,8 @@ data = pd.read_csv("data/data_pro.csv", delimiter=';', parse_dates=["date"], ind
 
 zscore = data.apply(stats.zscore)
 
-umbral = 2
+# Define the thresholds
+umbral_sup = 2
 
 # For each column in the DataFrame
 for column in data.columns:
@@ -17,7 +18,7 @@ for column in data.columns:
     new_data = pd.DataFrame({
         'date': data.index,
         column: data[column],
-        'zscore_' + column: (zscore[column] > umbral).astype(int)
+        'zscore_' + column: ((zscore[column] > umbral_sup)).astype(int)
     })
     
     # Save the new DataFrame to a CSV file
