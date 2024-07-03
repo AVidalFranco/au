@@ -21,7 +21,7 @@ for column in data.columns:
     data_normalized = scaler.fit_transform(data_column)
     
     # Train the One-Class SVM
-    model = OneClassSVM(nu=0.01, kernel="rbf", gamma=0.01)
+    model = OneClassSVM(nu=0.05, kernel="rbf", gamma=0.01)
     model.fit(data_normalized)
     
     # Predict the anomalies in the data
